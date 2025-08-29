@@ -1,0 +1,15 @@
+name: Terraform Plan (infra)
+on: [pull_request]
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Terraform Init & Plan
+        working-directory: infra/envs/dev
+        run: |
+          terraform init
+          terraform validate
+          terraform plan -out=tfplan
