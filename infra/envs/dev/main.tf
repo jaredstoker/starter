@@ -31,6 +31,16 @@ module "ecs_service" {
     "ENV"        = "dev"
     "TABLE_NAME" = module.dynamodb.table_name
   }
+module "ecs" {
+  source          = "../../modules/ecs"
+  service_name    = "routing-service"
+  cpu             = "256"
+  memory          = "512"
+  container_port  = 8080
+  environment     = {}
+  container_image = var.container_image
+ }
+
 }
 
 resource "aws_security_group" "ecs_sg" {

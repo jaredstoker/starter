@@ -1,7 +1,3 @@
-variable "region" {
-  type    = string
-  default = "us-east-1"
-}
 variable "container_image" {
   description = "ECR image URI with tag"
   type        = string
